@@ -159,7 +159,7 @@ describe('2 - Filtre a tabela através de um texto, inserido num *campo de texto
   });
 });
 
-describe.skip('3 - Crie um filtro para valores numéricos', () => {
+describe('3 - Crie um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -279,7 +279,7 @@ describe.skip('3 - Crie um filtro para valores numéricos', () => {
   });
 });
 
-describe.skip('4 - Não utilize filtros repetidos', () => {
+describe('4 - Não utilize filtros repetidos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -316,7 +316,7 @@ describe.skip('4 - Não utilize filtros repetidos', () => {
   });
 });
 
-describe.skip('5 - Apague o filtro de valores numéricos e desfaça as filtragens dos dados da tabela ao clicar no ícone de `X` de um dos filtros', () => {
+describe('5 - Apague o filtro de valores numéricos e desfaça as filtragens dos dados da tabela ao clicar no ícone de `X` de um dos filtros', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -372,7 +372,7 @@ describe('6 - Ordene as colunas de forma ascendente ou descendente', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
-  it.skip('Verifique a ordenação inicial', async () => {
+  it('Verifique a ordenação inicial', async () => {
     await act(async () => {
       render(<App />);
     });
@@ -382,7 +382,7 @@ describe('6 - Ordene as colunas de forma ascendente ou descendente', () => {
     expect(actual).toEqual(expected);
   });
 
-  it.skip('Ordene os planetas do maior período orbital para o menor período orbital', async () => {
+  it('Ordene os planetas do maior período orbital para o menor período orbital', async () => {
     await act(async () => {
       render(<App />);
     });
@@ -395,7 +395,7 @@ describe('6 - Ordene as colunas de forma ascendente ou descendente', () => {
     expect(actual).toEqual(expected);
   });
 
-  it.skip('Ordene os planetas do menor diametro para o maior diametro', async () => {
+  it('Ordene os planetas do menor diametro para o maior diametro', async () => {
     await act(async () => {
       render(<App />);
     });
