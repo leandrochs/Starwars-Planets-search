@@ -5,13 +5,14 @@ import PlanetsContext from './context/planetsContext';
 import FilterByName from './components/FilterByName';
 import FilterByNumericValues from './components/FilterByNumericValues';
 import ShowFilters from './components/ShowFilters';
+import filterFunc from './services/filterFunc';
 
 function App() {
   const [data, setData] = useState('');
   const [planetName, setPlanetName] = useState('');
-  const [column, setColumn] = useState('');
-  const [comparison, setComparison] = useState('');
-  const [value, setValue] = useState('');
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
+  const [value, setValue] = useState('0');
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
@@ -22,12 +23,33 @@ function App() {
       });
   }, []);
 
-  function filterFunc(allData) {
-    return allData.filter((d) => d.name.includes(planetName));
-  }
+  // function filterFunc(allData, filters) {
+  //   let dataFiltered = allData;
+  //   if (filters.length > 0) {
+  //     filters.forEach((fil) => {
+  //       const col = Object.values(fil)[0];
+  //       const compar = Object.values(fil)[1];
+  //       const val = parseInt(Object.values(fil)[2], 10);
+
+  //       const apllyFilter = dataFiltered.filter((d) => {
+  //         let res = [];
+  //         if (compar === 'maior que') res = parseInt(d[col], 10) > val;
+  //         if (compar === 'menor que') res = parseInt(d[col], 10) < val;
+  //         if (compar === 'igual a') res = parseInt(d[col], 10) === val;
+  //         return res;
+  //       });
+
+  //       dataFiltered = apllyFilter;
+  //     });
+  //   } else {
+  //     dataFiltered = allData.filter((d) => d.name.includes(planetName));
+  //   }
+
+  //   return dataFiltered;
+  // }
 
   const contextValue = {
-    data: data && filterFunc(data),
+    data: data && filterFunc(data, filters, planetName),
     setData,
     filterByName: {
       planetName,

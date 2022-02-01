@@ -3,17 +3,16 @@ import PlanetsContext from '../context/planetsContext';
 
 function ComparisonFilter() {
   const options = [
-    { value: 'Select Comparison', label: 'Select Comparison' },
-    { value: '>', label: 'greater than' },
-    { value: '<', label: 'less than' },
-    { value: '===', label: 'equal' },
+    { value: 'maior que', label: 'maior que' },
+    { value: 'igual a', label: 'igual a' },
+    { value: 'menor que', label: 'menor que' },
   ];
 
   return (
     <PlanetsContext.Consumer>
       { ({ filterByNumericValues: { comparison, setComparison } }) => (
         <select
-          testid="comparison-filter"
+          data-testid="comparison-filter"
           value={ comparison }
           onChange={ (e) => setComparison(e.target.value) }
         >

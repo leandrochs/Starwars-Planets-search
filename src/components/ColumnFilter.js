@@ -2,32 +2,41 @@ import React from 'react';
 import PlanetsContext from '../context/planetsContext';
 
 function ColumnFilter() {
-  const options = [
-    { value: 'Select Column', label: 'Select Column' },
-    { value: 'population', label: 'Population' },
-    { value: 'orbital_period', label: 'Orbital Period' },
-    { value: 'diameter', label: 'Diameter' },
-    { value: 'rotation_period', label: 'Rotation Period' },
-    { value: 'surface_water', label: 'Surface Water' },
+  const allOptions = [
+    { value: 'population', label: 'population' },
+    { value: 'orbital_period', label: 'orbital_period' },
+    { value: 'diameter', label: 'diameter' },
+    { value: 'rotation_period', label: 'rotation_period' },
+    { value: 'surface_water', label: 'surface_water' },
   ];
 
   return (
     <PlanetsContext.Consumer>
-      { ({ filterByNumericValues: { column, setColumn } }) => (
-        <select
-          testid="column-filter"
-          value={ column }
-          onChange={ (e) => setColumn(e.target.value) }
-        >
-          { options.map(({ value, label }) => (
-            <option
-              key={ value }
-              value={ value }
-            >
-              { label }
-            </option>)) }
-        </select>
-      )}
+      { ({ filters, filterByNumericValues: { column, setColumn } }) => {
+        let options = allOptions;
+        if (filters.length > 0) {
+          filters.forEach((fil) => {
+            const filtered = options.filter(({ value }) => value !== fil.column);
+            options = filtered;
+          });
+        }
+
+        return (
+          <select
+            data-testid="column-filter"
+            value={ column }
+            onChange={ (e) => setColumn(e.target.value) }
+          >
+            { options.map(({ value, label }) => (
+              <option
+                key={ value }
+                value={ value }
+              >
+                { label }
+              </option>)) }
+          </select>
+        );
+      }}
     </PlanetsContext.Consumer>
   );
 }
